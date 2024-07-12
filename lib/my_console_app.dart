@@ -5,11 +5,11 @@ import 'dart:math';
 import 'package:my_console_app/my_console_app.dart' as my_console_app;
 
 void main(List<String> arguments) {
-  firstTask();
-  secondTask();
+  // firstTask();
+  // secondTask();
   thirdTask();
-  fourthTask();
-  fifthTask();
+  // fourthTask();
+  // fifthTask();
 }
 
 void firstTask() {
@@ -123,13 +123,15 @@ void thirdTask() {
   ];
   var resultNums = [];
   var sum = 0.0;
+  var flag = false;
   for (var num in nums) {
-    if (num > 0) {
+    if (num < 0 && !flag) {
+      flag = true;
+      sum = 0;
+      resultNums = [];
+    } else {
       sum += num;
       resultNums.add(num);
-    } else {
-      sum = 0.0;
-      resultNums = [];
     }
   }
   print('Положительные числа расположенные после отрицательного: $resultNums');
@@ -205,15 +207,20 @@ void fifthTask() {
   print('------------------------5----------------------------');
   var dictionary = <String, List<String>>{};
   dictionary['Храбрый'] = ['Смелый', 'Отважный', 'Бесстрашный', 'Неустрашимый'];
-  dictionary['Неприятный'] = ['Противный', 'Отвратительный', 'Мерзостный', 'Омерзительный'];
+  dictionary['Неприятный'] = [
+    'Противный',
+    'Отвратительный',
+    'Мерзостный',
+    'Омерзительный'
+  ];
   dictionary['Буря'] = ['Ураган', 'Тайфун', 'Шторм', 'Циклон'];
   dictionary['Идти'] = ['Шагать', 'Шествовать', 'Ступать', 'Плестись'];
   print(dictionary);
 
-  while(true){
+  while (true) {
     print('Введите слово для получения синонима');
     String? word = stdin.readLineSync();
-    if(dictionary.keys.contains(word)){
+    if (dictionary.keys.contains(word)) {
       var synonyms = dictionary[word];
       var randomSin = synonyms?[Random().nextInt(synonyms.length)];
       print('Синоним: $randomSin');
